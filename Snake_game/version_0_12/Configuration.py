@@ -7,7 +7,7 @@ class Configurations:
     _game_title = "Snake game en pygame"    # Título de juego.
     #_background = (50, 230, 50)             # Fondo de la pantalla en formato RGB.
     _fps = 8                                # FPS del juego (velocidad)
-    _game_over_screen_time = 4
+    _game_over_screen_time = 2
 
     # Configuraciones de la serpiente.
     _snake_block_size = 40      # Tamaño de bloque de la serpiente.

@@ -13,7 +13,7 @@ from Game_functionalities import game_events, screen_refresh, snake_movement, ch
 from Snake import SnakeBlock
 from pygame.sprite import Group
 from Apple import Apple
-from media import Background, Audio
+from media import Background, Audio, Scoreboard, GameOverImage
 
 
 
@@ -58,7 +58,12 @@ def run_game() -> None:
     audio.play_music(volume=Configurations.get_music_volume())
     audio.play_start_sound()
 
+    # Se crea el objeto para el score. objeto = clase()
+    scoreboard = Scoreboard()
 
+    # Se cra el objeto de la clase GameOverImage
+    game_over_image = GameOverImage()
+    
     # Ciclo principal del juego.
     game_over = False
 
@@ -74,17 +79,15 @@ def run_game() -> None:
         snake_movement(snake_body)
 
         # Se revisan las colisiones en el juego.
-        game_over = check_collision(screen, snake_body, apples,audio)
+        game_over = check_collision(screen, snake_body, apples,audio, scoreboard)
 
         # Se dibujan los elementos gráficos en la pantalla
-        screen_refresh(screen,clock, snake_body, apples, background)
+        screen_refresh(screen,clock, snake_body, apples, background,scoreboard)
 
         # Si se ha perdido el jugador se llama a la pantalla de fin de juego.
         if game_over:
-            game_over_screen(audio)
-
+            game_over_screen(audio,screen)
     # Se cierran los recursos
     pygame.quit()
-
 if __name__=="__main__":
     run_game()

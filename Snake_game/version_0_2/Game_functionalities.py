@@ -1,5 +1,6 @@
 import pygame
 from Configuration import Configurations
+
 def game_events() -> bool:
     """
     Función que administra los eventos del juego.
@@ -7,7 +8,6 @@ def game_events() -> bool:
     """
     # Se declara la bandera del sin del juego.
     game_over = False
-
 
     # Se verifica los eventos (teclado y ratón) del juego.
     for event in pygame.event.get():
@@ -21,7 +21,7 @@ def game_events() -> bool:
 
 def screen_refresh(screen:pygame.surface.Surface) -> None:
     """
-    Función que administra los elemento visuales del uego.
+    Función que administra los elemento visuales del juego.
     :return:
     """
     screen.fill(Configurations.get_background())

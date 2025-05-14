@@ -4,7 +4,7 @@ import pygame
 from Configuration import Configurations
 from Snake import SnakeBlock
 from Apple import Apple
-from media import Background, Audio
+from media import Audio, Background, Scoreboard, GameOverImage
 
 
 def game_events() -> bool:
@@ -76,7 +76,8 @@ def snake_movement(snake_body: pygame.sprite.Group) -> None:
     elif SnakeBlock.get_is_moving_down():
         head.rect.y += Configurations.get_snake_block_size()
 
-def check_collision(screen:pygame.surface.Surface, snake_body: pygame.sprite.Group, apples:pygame.sprite.Group, audio: Audio) -> bool:
+def check_collision(screen:pygame.surface.Surface, snake_body: pygame.sprite.Group, apples:pygame.sprite.Group,
+                    audio: Audio, scoreboard:Scoreboard) -> bool:
     """
     Función que revisa las colisiones del juego.
     * Cabeza de la serpiente.
@@ -118,18 +119,22 @@ def check_collision(screen:pygame.surface.Surface, snake_body: pygame.sprite.Gro
         new_apple.random_position(snake_body)
         apples.add(new_apple)
 
+        scoreboard.update(Apple.get_no_apples()-1)
+
         audio.play_eats_apple_sound()
 
     return game_over
 
 def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock,
-                   snake_body: pygame.sprite.Group, apples:pygame.sprite.Group, background: Background) -> None:
+                   snake_body: pygame.sprite.Group, apples:pygame.sprite.Group,background:Background, scoreboard:Scoreboard) -> None:
     """
     Función que administra los elemento visuales del juego.
     :return:
     """
     # Se dibuja el fondo de la pantalla
     background.blit(screen)
+
+    scoreboard.blit(screen)
 
     # Fondo de Pantalla en formato RGB
     #screen.fill(Configurations.get_background())
@@ -151,11 +156,14 @@ def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock,
     # Se controla la velocidad de FPS del juego.
     clock.tick(Configurations.get_fps())
 
-def game_over_screen(audio:Audio) -> None:
+def game_over_screen(audio:Audio, screen:pygame.surface.Surface) -> None:
     """
     Función con la parte de fin de juego.
     """
     audio.music_fadeout(time = Configurations.get_music_fadeout_time())
     audio.play_game_over_sound()
 
+    game_over_image = GameOverImage()
+    game_over_image.blit(screen)
+    pygame.display.flip()
     time.sleep(Configurations.get_game_over_screen_time())
