@@ -33,14 +33,17 @@ def run_game() -> None:
     # Se crea el objeto con el fondo de pantalla.
     background = Background()
 
+    # Grupo de las marcas.
+    marks_group = pygame.sprite.Group()
+
     # Ciclo principal del juego.
     game_over = False
     while not game_over:
         # Se verifica los eventos (teclado y ratón) del juego.
-        game_over = game_events()
+        game_over = game_events(marks_group)
 
         # Se dibujan los elementos gráficos en la pantalla
-        screen_refresh(screen, clock, background)
+        screen_refresh(screen, clock, background, marks_group)
 
         # Se actualiza la pantalla.
         pygame.display.flip()

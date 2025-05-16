@@ -6,11 +6,9 @@ class Background:
     Clase que contiene el fondo de pantalla.
     """
     def __init__(self):
-        background_image_path = Configurations.get_background_image_path()
-        self.image = pygame.image.load(background_image_path)
+        self.image = pygame.image.load(Configurations.get_background_image_path())
 
-        screen_size = Configurations.get_screen_size()
-        self.image = pygame.transform.scale(self.image,screen_size)
+        self.image = pygame.transform.scale(self.image, Configurations.get_screen_size())
 
         self.rect = self.image.get_rect()
 

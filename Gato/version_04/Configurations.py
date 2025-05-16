@@ -13,6 +13,12 @@ class Configurations:
     _markO_image_path = "../media/markO.png"
     _markX_image_path = "../media/markX.png"
 
+    _cell_positions ={
+        1:(274,274), 2:(357,274), 3:(440,274),
+        4:(274,392), 5:(357,392), 6:(440,392),
+        7:(274, 504), 8:(357, 504), 9:(440, 504)
+    }
+
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
         """
@@ -61,3 +67,11 @@ class Configurations:
         Getter para _markX_image_path
         """
         return cls._markX_image_path
+
+    @classmethod
+    def get_cell_positions(cls, cell_number:int) -> tuple[int, int] | None:
+        """
+        Getter para _cell_positions
+        """
+        if cell_number in cls._cell_positions:
+            return cls._cell_positions[cell_number]
