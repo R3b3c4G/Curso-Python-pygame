@@ -16,7 +16,7 @@ class TicTacToeMark(Sprite):
             self.image = pygame.image.load(Configurations.get_markO_image_path())
 
         # Escalar imagen marca.
-        self.image = pygame.transform.scale(self.image,(65,65))
+        self.image = pygame.transform.scale(self.image,Configurations.get_mark_size())
 
         # Posicionar imagen marca.
         self.rect = self.image.get_rect()
