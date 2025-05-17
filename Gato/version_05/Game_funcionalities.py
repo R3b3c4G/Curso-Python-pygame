@@ -1,9 +1,9 @@
 import pygame
 from Configurations import Configurations
-from Media import Background
+from Media import Background, TurnImage
 from TikTacToe import TicTacToeMark
 
-def game_events(marks_group) -> bool:
+def game_events(marks_group, turn_image:TurnImage) -> bool:
     """
     Función que administra los eventos del juego.
     :return: La bandera del fin del juego.
@@ -21,47 +21,33 @@ def game_events(marks_group) -> bool:
 
         # Responder a las pulsaciones de teclas y controlar la lógica del juego en función de la entrada del usuario.
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
-                new_mark = TicTacToeMark(1)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_w:
-                new_mark = TicTacToeMark(2)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_e:
-                new_mark = TicTacToeMark(3)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_a:
-                new_mark = TicTacToeMark(4)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_s:
-                new_mark = TicTacToeMark(5)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_d:
-                new_mark = TicTacToeMark(6)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_z:
-                new_mark = TicTacToeMark(7)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_x:
-                new_mark = TicTacToeMark(8)
-                marks_group.add(new_mark)
-
-            elif event.key == pygame.K_c:
-                new_mark = TicTacToeMark(9)
-                marks_group.add(new_mark)
+            cell_keys = {
+                pygame.K_q:1,
+                pygame.K_w:2,
+                pygame.K_e:3,
+                pygame.K_a:4,
+                pygame.K_s:5,
+                pygame.K_d:6,
+                pygame.K_z:7,
+                pygame.K_x:8,
+                pygame.K_c:9
+                }
+            if event.key in cell_keys:
+                cell_number = cell_keys[event.key]
+                cell_occupied = False
+                for mark in marks_group:
+                    if mark.get_cell_number() == cell_number:
+                        cell_occupied = True
+                        break
+                if not cell_occupied:
+                    new_mark = TicTacToeMark(cell_number)
+                    marks_group.add(new_mark)
+                    turn_image.change_turn(TicTacToeMark.get_turno())
 
     # Se regresa la bandera.
     return game_over
 
-
-def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, background: Background, marks_group:pygame.sprite.Group) -> None:
+def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, background: Background, marks_group:pygame.sprite.Group, turn_image: TurnImage) -> None:
     """
     Función que administra los elemento visuales del juego.
     """
@@ -72,6 +58,7 @@ def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, back
     marks_group.draw(screen)
 
     # Se dibuja la imagen del turno.
+    screen.blit(turn_image.image, turn_image.rect)
 
     # Se actualiza la pantalla.
     pygame.display.flip()

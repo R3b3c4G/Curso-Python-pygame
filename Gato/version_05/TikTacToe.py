@@ -22,12 +22,19 @@ class TicTacToeMark(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = Configurations.get_cell_positions(cell_number)
 
+        self._cell_number = cell_number
+
         # Cambiar turno.
         if self._turno == "X":
             TicTacToeMark._turno = "O"
         else:
             TicTacToeMark._turno = "X"
 
+    def get_cell_number(self) -> int:
+        """
+        Getter para _cell_number
+        """
+        return self._cell_number
 
     @classmethod
     def get_turno(cls)-> str:

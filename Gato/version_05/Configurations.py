@@ -22,7 +22,8 @@ class Configurations:
         7:(274, 504), 8:(357, 504), 9:(440, 504)
     }
 
-    _turn_image_position = ()
+    _size_turn_image = (10,10)
+    _turn_image_position = (5,20)
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -73,6 +74,19 @@ class Configurations:
         """
         return cls._markX_image_path
 
+    @classmethod
+    def get_turnO_image_path(cls) -> str:
+        """
+        Getter para _turnO_image_path
+        """
+        return cls._turnO_image_path
+
+    @classmethod
+    def get_turnX_image_path(cls) -> str:
+        """
+        Getter para _turnX_image_path
+        """
+        return cls._turnX_image_path
 
     @classmethod
     def get_mark_size(cls) -> tuple[int,int]:
@@ -88,6 +102,14 @@ class Configurations:
         """
         if cell_number in cls._cell_positions:
             return cls._cell_positions[cell_number]
+        return None
+
+    @classmethod
+    def get_size_turn_image(cls) -> tuple[int,int]:
+        """
+        Getter para _mark_size
+        """
+        return cls._size_turn_image
 
     @classmethod
     def get_turn_image_position(cls) -> tuple[int,int]:

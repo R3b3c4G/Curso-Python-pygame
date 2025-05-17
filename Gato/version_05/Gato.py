@@ -12,7 +12,7 @@ Ahora se verifica que las casillas no estén ocupadas al crear una nueva marca.
 import pygame
 from Configurations import Configurations
 from Game_funcionalities import game_events, screen_refresh
-from Media import Background
+from Media import Background, TurnImage
 
 def run_game() -> None:
     """
@@ -37,16 +37,16 @@ def run_game() -> None:
     marks_group = pygame.sprite.Group()
 
     # Imagen del turno.
-    turn_image = Tur
+    turn_image = TurnImage()
 
     # Ciclo principal del juego.
     game_over = False
     while not game_over:
         # Se verifica los eventos (teclado y ratón) del juego.
-        game_over = game_events(marks_group)
+        game_over = game_events(marks_group, turn_image)
 
         # Se dibujan los elementos gráficos en la pantalla
-        screen_refresh(screen, clock, background, marks_group)
+        screen_refresh(screen, clock, background, marks_group, turn_image)
 
         # Se actualiza la pantalla.
         pygame.display.flip()
