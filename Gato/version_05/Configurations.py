@@ -23,7 +23,7 @@ class Configurations:
         7:(274, 504), 8:(357, 504), 9:(440, 504)
     }
 
-    _size_turn_image = (300, 200)
+    _size_turn_image = (200, 100)
     _turn_image_position = (5,20)
 
     @classmethod
@@ -51,6 +51,7 @@ class Configurations:
     def get_fps(cls) -> int:
         """
         Getter para _fps
+
         """
         return cls._fps
 

@@ -19,6 +19,7 @@ from Media import Background, TurnImage
 def run_game() -> None:
     """
     Función principal de videojuego del gato.
+
     """
     # Se inicializa el módulo de pygame.
     pygame.init()
