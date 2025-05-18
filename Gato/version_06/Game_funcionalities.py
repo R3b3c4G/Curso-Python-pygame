@@ -1,6 +1,7 @@
 import pygame
+import time
 from Configurations import Configurations
-from Media import Background, TurnImage
+from Media import Background, TurnImage, ResultsImage, CreditsImage
 from TikTacToe import TicTacToeMark
 
 def game_events(marks_group, turn_image:TurnImage) -> bool:
@@ -66,7 +67,7 @@ def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, back
     # Se controla la velocidad de FPS del juego.
     clock.tick(Configurations.get_fps())
 
-def check_winner(marks_group) -> bool and str:
+def check_winner(marks_group) -> tuple[bool, str]:
     """
      Función para verificar si hay un ganador o si se tiene un empate.
 
@@ -99,24 +100,24 @@ def check_winner(marks_group) -> bool and str:
         else:
             marcas_o.append(lista_numeros[i])
 
-    # Verificación  X o O gana
-    # Se accede a los valores de diccionario
+    # Verificación X o O gana.
+    # Se accede a los valores de diccionario.
     for combinacion in combinaciones_ganadoras.values():
         #Aqui se reinician los contadores
         contador_x = 0
         contador_o = 0
-        #se itera en cada numero de la listas del diccionario
+        #se itera en cada numero de la listas del diccionario.
         for numero in combinacion:
-            #Si ese numero esta dentro de las marcas de los jugadores aumenta contador
+            #Si ese número está dentro de las marcas de los jugadores aumenta contador.
             if numero in marcas_x:
                 contador_x += 1
             if numero in marcas_o:
                 contador_o += 1
-        #Se verifica si se ha legado a 3
+        #Se verifica si se ha llegado a 3.
         if contador_x == 3:
-            return True, "x"
+            return True, "X"
         if contador_o == 3:
-            return True, "o"
+            return True, "O"
 
     #Si tod0 eso se completo quiere deci que es empate
     if len(lista_numeros) == 9:
@@ -125,6 +126,36 @@ def check_winner(marks_group) -> bool and str:
     #Por si nadie ah ganado
     return False, ""
 
-if __name__ == '__main__':
-    lis=[1,4,2,5,3,6,7,8,9]
-    print(check_winner(lis))
+
+def game_over_screen(screen:pygame.surface.Surface, clock: pygame.time.Clock, background: Background, marks_group:pygame.sprite.Group, turn_image: TurnImage, result) -> None:
+    """
+    Muestra la pantalla de fin de juego con efecto de parpadeo.
+    """
+    # Se crea la imagen del resultado.
+    results_image = ResultsImage(result)
+
+    # Se crea la imagen de créditos.
+    credits_image = CreditsImage()
+
+    # Duración del afecto.
+    time_effect = Configurations.get_time_effect()
+
+    # Tiempo en el que inicia el efecto.
+    start_time = time.time()
+
+    while time.time() - start_time < 3:  # Mostrar por 3 segundos
+        current_time = pygame.time.get_ticks()
+        show_result = (current_time % (time_effect * 2)) < time_effect
+
+
+        background.blit(screen)
+        marks_group.draw(screen)
+        turn_image.blit(screen)
+        credits_image.blit(screen)
+
+        # Dibujar resultado si corresponde
+        if show_result:
+            screen.blit(results_image.image, results_image.rect)
+
+        pygame.display.flip()
+        clock.tick(Configurations.get_fps())

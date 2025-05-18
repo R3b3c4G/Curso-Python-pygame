@@ -12,8 +12,8 @@ Se agregó la pantalla del fin del juego.
 # Se importa los módulos del videojuego.
 import pygame
 from Configurations import Configurations
-from Game_funcionalities import game_events, screen_refresh
-from Media import Background, TurnImage
+from Game_funcionalities import game_events, screen_refresh, check_winner, game_over_screen
+from Media import Background, TurnImage, ResultsImage, CreditsImage
 
 def run_game() -> None:
     """
@@ -50,6 +50,14 @@ def run_game() -> None:
 
         # Se dibujan los elementos gráficos en la pantalla
         screen_refresh(screen, clock, background, marks_group, turn_image)
+
+        # Se verifica los resultados del juego.
+        game_over, result = check_winner(marks_group)
+
+        # Si el juego terminó, mostrar pantalla de resultados
+        if game_over:
+            game_over_screen(screen, clock, background, marks_group, turn_image, result)
+            break
 
         # Se actualiza la pantalla.
         pygame.display.flip()

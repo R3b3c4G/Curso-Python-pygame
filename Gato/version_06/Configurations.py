@@ -32,9 +32,11 @@ class Configurations:
     _turn_image_position = (140,100)
 
     _results_image_position = (500,500)
-    _credits_image_position = (500,500)
+    _image_size_results = (500, 100)
 
-    _time_efect = 500
+    _image_size_credits = (274, 100)
+
+    _time_effect = 500
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -159,15 +161,30 @@ class Configurations:
         return cls._results_image_position
 
     @classmethod
-    def get_credits_image_position(cls) -> tuple[int, int]:
+    def get_credits_image_path(cls) -> str:
         """
-        Getter para _credits_image_position
+        Getter para _credits_image_path
         """
-        return cls._credits_image_position
+        return cls._credits_image_path
+
 
     @classmethod
-    def get_time_efect(cls) -> tuple[int, int]:
+    def get_image_size_credits(cls) -> tuple[int, int]:
         """
-        Getter para _time_efect.
+        Getter para _image_size_credits
         """
-        return cls._credits_image_position
+        return cls._image_size_credits
+
+    @classmethod
+    def get_image_size_results(cls) -> tuple[int, int]:
+        """
+        Getter para _image_size_results
+        """
+        return cls._image_size_results
+
+    @classmethod
+    def get_time_effect(cls) -> int:
+        """
+        Getter para _time_effect.
+        """
+        return cls._time_effect

@@ -43,11 +43,14 @@ class TurnImage:
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = Configurations.get_turn_image_position()
 
+    def blit(self, screen):
+        screen.blit(self.image, self.rect)
+
+
 class ResultsImage:
     """
     Clase que contiene la pantalla del fin del juego.
     """
-
     def __init__(self, result: str):
         if result == "X":
             self.image = pygame.image.load(Configurations.get_winX_image_path())
@@ -56,8 +59,11 @@ class ResultsImage:
         else:  # Empate
             self.image = pygame.image.load(Configurations.get_draw_image_path())
 
+        self.image = pygame.transform.scale(self.image, Configurations.get_image_size_results())
         self.rect = self.image.get_rect()
-        self.rect.x, self.rect.y = Configurations.get_results_image_position()
+        screen_size = Configurations.get_screen_size()
+        self.rect.centerx = screen_size[0] // 2 # Ancho.
+        self.rect.y = 50  # 50px desde arriba
 
 
 class CreditsImage:
@@ -66,5 +72,11 @@ class CreditsImage:
     """
     def __init__(self):
         self.image = pygame.image.load(Configurations.get_credits_image_path())
+        self.image = pygame.transform.scale(self.image, Configurations.get_image_size_credits())
         self.rect = self.image.get_rect()
-        self.rect.x, self.rect.y = Configurations.get_credits_image_position()
+        screen_size = Configurations.get_screen_size()
+        self.rect.centerx = screen_size[0] // 2 # Ancho.  # La mitad del ancho de pantalla
+        self.rect.bottom = screen_size[1] - 20  #Alto # 20px desde abajo
+
+    def blit(self, screen):
+        screen.blit(self.image, self.rect)
