@@ -106,8 +106,9 @@ def check_winner(marks_group) -> bool and str:
             ganador = "x"
             game_over = True
             return game_over, ganador
-        if contador_de_marcas2==0 and contador_de_marcas==0:
-            ganador = "draw"
-            game_over = True
-            return game_over, ganador
+    #Cuando se hallan verificado tod0 es empate
+    if contador_de_marcas2==0 and contador_de_marcas==0:
+        ganador = "draw"
+        game_over = True
+        return game_over, ganador
 
