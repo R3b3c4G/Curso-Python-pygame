@@ -1,6 +1,7 @@
 class Configurations:
     """
     Clase que contiene todas las configuraciones del juego del gato.
+
     """
     # Configuraciones de la pantalla.
     _screen_size = (780, 680)               # Resolución de pantalla(ancho, alto)

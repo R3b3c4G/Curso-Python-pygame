@@ -4,6 +4,8 @@ from Configurations import Configurations
 class Background:
     """
     Clase que contiene el fondo de pantalla.
+
+
     """
     def __init__(self):
         self.image = pygame.image.load(Configurations.get_background_image_path())

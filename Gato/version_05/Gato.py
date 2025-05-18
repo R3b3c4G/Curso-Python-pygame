@@ -6,6 +6,8 @@ Integrantes: Héctor Jesús Méndez Santiago, Rebeca Gregorio Espina.
 Archivo donde se reproducirá el juego principal del gato.
 Versión 0.5:
 Ahora se verifica que las casillas no estén ocupadas al crear una nueva marca.
+
+
 """
 
 # Se importa los módulos del videojuego.
