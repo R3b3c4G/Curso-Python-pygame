@@ -4,6 +4,7 @@ from Configuration import Configurations
 class Background:
     """
     Clase que contiene el fondo de pantalla.
+
     """
     def __init__(self):
         background_image_path = Configurations.get_background_image_path()
