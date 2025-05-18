@@ -66,9 +66,20 @@ def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, back
     # Se controla la velocidad de FPS del juego.
     clock.tick(Configurations.get_fps())
 
-    def check_winner(marks_group) -> bool|str:
-        """
-        Función para verificar si hay un ganador o si se tiene un empate.
-        """
+def check_winner(marks_group) -> bool|str:
+    """
+    Función para verificar si hay un ganador o si se tiene un empate.
+    """
+    lista_numeros = []
+    game_over = False
+    for mark in marks_group:
+        lista_numeros.append(mark.get_cell_number)
+    lista_numeros = lista_numeros.reverse()
+
+    if lista_numeros[0] == 1 and lista_numeros[2]==2 and lista_numeros[4]==3:
+        game_over = True
+
+    elif lista_numeros[0] == 1 and lista_numeros[2]==2 and lista_numeros[4]==3:
+        game_over = True
 
 
