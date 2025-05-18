@@ -68,51 +68,63 @@ def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, back
 
 def check_winner(marks_group) -> bool and str:
     """
-    Función para verificar si hay un ganador o si se tiene un empate.
+     Función para verificar si hay un ganador o si se tiene un empate.
+
     """
-    combinaciones_ganadoras = {'1':[1,2,3],
-                               '2':[4,5,6],
-                               '3':[7,8,9],
-                               '4':[1,5,9],
-                               '5':[3,5,7],
-                               '6':[1,4,7],
-                               '7':[2,5,8],
-                               '8':[3,6,9]}
-    contador_de_marcas = 0
-    contador_de_marcas2 = 0
+    combinaciones_ganadoras = {
+        '1': [1, 2, 3],
+        '2': [4, 5, 6],
+        '3': [7, 8, 9],
+        '4': [1, 5, 9],
+        '5': [3, 5, 7],
+        '6': [1, 4, 7],
+        '7': [2, 5, 8],
+        '8': [3, 6, 9]
+    }
+
     lista_numeros = []
-    game_over = False
+
     for mark in marks_group:
-        lista_numeros.append(mark.get_cell_number)
-    lista_numeros = lista_numeros.reverse()
+        lista_numeros.append(mark)
 
-    #For que itera de dos en dos:
-    for i in range(0, len(marks_group), 2):
-        for key, value in combinaciones_ganadoras.items():
-            #Para x
-            if lista_numeros[i] in value:
-                contador_de_marcas +=1
-            else:
-                contador_de_marcas = 0
-            #Para y
-            if lista_numeros[i+1] in value:
-                contador_de_marcas2 += 1
-            else:
-                contador_de_marcas2 = 0
-        #Retornar ganado: X
-        if contador_de_marcas == 3:
-            ganador = "x"
-            game_over = True
-            return game_over, ganador
-        #Retornar ganado: O
-        if contador_de_marcas2 == 3:
-            ganador = "x"
-            game_over = True
-            return game_over, ganador
-    #Cuando se hallan verificado tod0 es empate
-    if contador_de_marcas2==0 and contador_de_marcas==0:
-        ganador = "draw"
-        game_over = True
-        return game_over, ganador
+    lista_numeros.reverse()
 
-    return game_over
+    #Marcas de x y de o
+    marcas_x = []
+    marcas_o = []
+    for i in range(len(lista_numeros)):
+        #Esto es para cada iteracion, si es doble es de los x si no es 0 en los identificadores
+        if i % 2 == 0:
+            marcas_x.append(lista_numeros[i])
+        else:
+            marcas_o.append(lista_numeros[i])
+
+    # Verificación  X o O gana
+    # Se accede a los valores de diccionario
+    for combinacion in combinaciones_ganadoras.values():
+        #Aqui se reinician los contadores
+        contador_x = 0
+        contador_o = 0
+        #se itera en cada numero de la listas del diccionario
+        for numero in combinacion:
+            #Si ese numero esta dentro de las marcas de los jugadores aumenta contador
+            if numero in marcas_x:
+                contador_x += 1
+            if numero in marcas_o:
+                contador_o += 1
+        #Se verifica si se ha legado a 3
+        if contador_x == 3:
+            return True, "x"
+        if contador_o == 3:
+            return True, "o"
+
+    #Si tod0 eso se completo quiere deci que es empate
+    if len(lista_numeros) == 9:
+        return True, "draw"
+
+    #Por si nadie ah ganado
+    return False, ""
+
+if __name__ == '__main__':
+    lis=[1,4,2,5,3,6,7,8,9]
+    print(check_winner(lis))
