@@ -1,9 +1,6 @@
 class Configurations:
     """
-
-
     Clase que contiene todas las configuraciones del juego del gato.
-
     """
     # Configuraciones de la pantalla.
     _screen_size = (780, 680)               # Resolución de pantalla(ancho, alto)
@@ -25,8 +22,8 @@ class Configurations:
         7:(274, 504), 8:(357, 504), 9:(440, 504)
     }
 
-    _size_turn_image = (200, 100)
-    _turn_image_position = (5,20)
+    _size_turn_image = (500, 100)
+    _turn_image_position = (140,100)
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -109,7 +106,7 @@ class Configurations:
         return None
 
     @classmethod
-    def get_size_turn_image(cls) -> int:
+    def get_size_turn_image(cls) -> tuple[int,int]:
         """
         Getter para tamaño de imagen de los turnos
         """
