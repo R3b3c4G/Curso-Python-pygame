@@ -22,7 +22,7 @@ class Configurations:
         7:(274, 504), 8:(357, 504), 9:(440, 504)
     }
 
-    _size_turn_image = (10,10)
+    _size_turn_image = (300, 200)
     _turn_image_position = (5,20)
 
     @classmethod
@@ -105,9 +105,9 @@ class Configurations:
         return None
 
     @classmethod
-    def get_size_turn_image(cls) -> tuple[int,int]:
+    def get_size_turn_image(cls) -> int:
         """
-        Getter para _mark_size
+        Getter para tamaño de imagen de los turnos
         """
         return cls._size_turn_image
 
