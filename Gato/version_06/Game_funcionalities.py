@@ -4,7 +4,7 @@ from Configurations import Configurations
 from Media import Background, TurnImage, ResultsImage, CreditsImage
 from TikTacToe import TicTacToeMark
 
-def game_events(marks_group, turn_image:TurnImage) -> bool:
+def game_events(marks_group, turn_image:TurnImage):
     """
     Función que administra los eventos del juego.
     :return: La bandera del fin del juego.
@@ -32,7 +32,7 @@ def game_events(marks_group, turn_image:TurnImage) -> bool:
                 pygame.K_z:7,
                 pygame.K_x:8,
                 pygame.K_c:9
-                }
+            }
             if event.key in cell_keys:
                 cell_number = cell_keys[event.key]
                 cell_occupied = False
@@ -41,12 +41,21 @@ def game_events(marks_group, turn_image:TurnImage) -> bool:
                         cell_occupied = True
                         break
                 if not cell_occupied:
+
+
                     new_mark = TicTacToeMark(cell_number)
                     marks_group.add(new_mark)
                     turn_image.change_turn(TicTacToeMark.get_turno())
 
+
+                    game_over, result = check_winner(marks_group)
+                    if game_over:
+                        return True, result
+
+
+
     # Se regresa la bandera.
-    return game_over
+    return game_over, ""
 
 def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, background: Background, marks_group:pygame.sprite.Group, turn_image: TurnImage) -> None:
     """
@@ -86,7 +95,7 @@ def check_winner(marks_group) -> tuple[bool, str]:
     lista_numeros = []
 
     for mark in marks_group:
-        lista_numeros.append(mark)
+        lista_numeros.append(mark.get_cell_number())
 
     lista_numeros.reverse()
 
@@ -116,8 +125,9 @@ def check_winner(marks_group) -> tuple[bool, str]:
         #Se verifica si se ha llegado a 3.
         if contador_x == 3:
             return True, "X"
-        if contador_o == 3:
+        elif contador_o == 3:
             return True, "O"
+
 
     #Si tod0 eso se completo quiere deci que es empate
     if len(lista_numeros) == 9:
