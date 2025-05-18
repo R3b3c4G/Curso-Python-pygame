@@ -17,6 +17,8 @@ class Configurations:
     _winO_image_path = "../media/winO.png"
     _winX_image_path = "../media/winX.png"
     _draw_image_path = "../media/draw.png"
+    _credits_image_path = "../media/credits_image.png"
+
 
 
     _mark_size = (65,65)
@@ -29,6 +31,10 @@ class Configurations:
     _size_turn_image = (500, 100)
     _turn_image_position = (140,100)
 
+    _results_image_position = (500,500)
+    _credits_image_position = (500,500)
+
+    _time_efect = 500
 
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
@@ -144,3 +150,24 @@ class Configurations:
         Getter para _winO_image_path
         """
         return cls._draw_image_path
+
+    @classmethod
+    def get_results_image_position(cls) -> tuple[int, int]:
+        """
+        Getter para _results_image_position
+        """
+        return cls._results_image_position
+
+    @classmethod
+    def get_credits_image_position(cls) -> tuple[int, int]:
+        """
+        Getter para _credits_image_position
+        """
+        return cls._credits_image_position
+
+    @classmethod
+    def get_time_efect(cls) -> tuple[int, int]:
+        """
+        Getter para _time_efect.
+        """
+        return cls._credits_image_position

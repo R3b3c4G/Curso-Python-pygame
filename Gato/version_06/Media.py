@@ -47,4 +47,24 @@ class ResultsImage:
     """
     Clase que contiene la pantalla del fin del juego.
     """
+
+    def __init__(self, result: str):
+        if result == "X":
+            self.image = pygame.image.load(Configurations.get_winX_image_path())
+        elif result == "O":
+            self.image = pygame.image.load(Configurations.get_winO_image_path())
+        else:  # Empate
+            self.image = pygame.image.load(Configurations.get_draw_image_path())
+
+        self.rect = self.image.get_rect()
+        self.rect.x, self.rect.y = Configurations.get_results_image_position()
+
+
+class CreditsImage:
+    """
+    Clase que muestra los créditos del juego.
+    """
     def __init__(self):
+        self.image = pygame.image.load(Configurations.get_credits_image_path())
+        self.rect = self.image.get_rect()
+        self.rect.x, self.rect.y = Configurations.get_credits_image_position()
