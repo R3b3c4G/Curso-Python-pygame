@@ -70,16 +70,29 @@ def check_winner(marks_group) -> bool|str:
     """
     Función para verificar si hay un ganador o si se tiene un empate.
     """
+    combinaciones_ganadoras = {'1':[1,2,3],
+                               '2':[4,5,6],
+                               '3':[7,8,9],
+                               '4':[1,5,9],
+                               '5':[3,5,7]}
+    contador_de_marcas = 0
     lista_numeros = []
     game_over = False
     for mark in marks_group:
         lista_numeros.append(mark.get_cell_number)
     lista_numeros = lista_numeros.reverse()
 
-    if lista_numeros[0] == 1 and lista_numeros[2]==2 and lista_numeros[4]==3:
-        game_over = True
+    #For que itera de dos en dos:
+    for i in range(0, len(marks_group), 2):
+        for key, value in combinaciones_ganadoras.items():
+            if lista_numeros[i] in value:
+                contador_de_marcas +=1
+            else:
+                contador_de_marcas = 0
+            
+        if contador_de_marcas == 3:
+            ganador = "x"
+            game_over = True
+            return game_over, ganador
 
-    elif lista_numeros[0] == 1 and lista_numeros[2]==2 and lista_numeros[4]==3:
-        game_over = True
-
-
+    return game_over
