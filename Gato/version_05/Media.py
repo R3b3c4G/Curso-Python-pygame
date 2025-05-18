@@ -18,6 +18,7 @@ class Background:
         """
         Función utilizada para dibujar el fondo de pantalla.
 
+
         """
         screen.blit(self.image, self.rect)
 

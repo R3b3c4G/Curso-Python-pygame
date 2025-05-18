@@ -1,5 +1,7 @@
 class Configurations:
     """
+
+
     Clase que contiene todas las configuraciones del juego del gato.
 
     """
