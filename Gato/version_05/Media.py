@@ -24,6 +24,9 @@ class TurnImage:
     """
     def __init__(self):
         self.image = pygame.image.load(Configurations.get_turnX_image_path())
+        image_size = Configurations.get_size_turn_image()
+        self.image = pygame.transform.scale(self.image, image_size)
+
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = Configurations.get_turn_image_position()
 
@@ -34,9 +37,10 @@ class TurnImage:
         """
         if turn == "X":
             self.image = pygame.image.load(Configurations.get_turnX_image_path())
+            self.image = pygame.transform.scale(self.image, Configurations.get_size_turn_image())
         else:
             self.image = pygame.image.load(Configurations.get_turnO_image_path())
-        self.image = pygame.transform.scale(self.image, Configurations.get_size_turn_image())
+            self.image = pygame.transform.scale(self.image, Configurations.get_size_turn_image())
 
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = Configurations.get_turn_image_position()
