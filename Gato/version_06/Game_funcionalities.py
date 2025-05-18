@@ -74,7 +74,10 @@ def check_winner(marks_group) -> bool and str:
                                '2':[4,5,6],
                                '3':[7,8,9],
                                '4':[1,5,9],
-                               '5':[3,5,7]}
+                               '5':[3,5,7],
+                               '6':[1,4,7],
+                               '7':[2,5,8],
+                               '8':[3,6,9]}
     contador_de_marcas = 0
     contador_de_marcas2 = 0
     lista_numeros = []
@@ -112,3 +115,4 @@ def check_winner(marks_group) -> bool and str:
         game_over = True
         return game_over, ganador
 
+    return game_over
