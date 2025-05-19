@@ -31,9 +31,9 @@ class Configurations:
     _size_turn_image = (500, 100)
     _turn_image_position = (140,100)
 
-    _image_size_results = (500, 100)
+    _image_size_results = (600, 150)
 
-    _image_size_credits = (500, 100)
+    _image_size_credits = (700, 150)
 
     _time_effect = 500
 

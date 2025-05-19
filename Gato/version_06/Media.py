@@ -63,7 +63,7 @@ class ResultsImage:
         self.rect = self.image.get_rect()
         screen_size = Configurations.get_screen_size()
         self.rect.centerx = screen_size[0] // 2  # Ancho.
-        self.rect.y = 50  # 50px desde arriba
+        self.rect.y = 250  # 250px desde arriba
 
 
 class CreditsImage:
