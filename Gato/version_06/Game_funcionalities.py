@@ -41,21 +41,14 @@ def game_events(marks_group, turn_image:TurnImage):
                         cell_occupied = True
                         break
                 if not cell_occupied:
-
-
                     new_mark = TicTacToeMark(cell_number)
                     marks_group.add(new_mark)
                     turn_image.change_turn(TicTacToeMark.get_turno())
 
 
-                    game_over, result = check_winner(marks_group)
-                    if game_over:
-                        return True, result
-
-
 
     # Se regresa la bandera.
-    return game_over, ""
+    return game_over
 
 def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, background: Background, marks_group:pygame.sprite.Group, turn_image: TurnImage) -> None:
     """
@@ -96,8 +89,6 @@ def check_winner(marks_group) -> tuple[bool, str]:
 
     for mark in marks_group:
         lista_numeros.append(mark.get_cell_number())
-
-    lista_numeros.reverse()
 
     #Marcas de x y de o
     marcas_x = []
@@ -143,13 +134,11 @@ def game_over_screen(screen:pygame.surface.Surface, clock: pygame.time.Clock, ba
     """
     # Se crea la imagen del resultado.
     results_image = ResultsImage(result)
-
     # Se crea la imagen de créditos.
     credits_image = CreditsImage()
 
     # Duración del afecto.
     time_effect = Configurations.get_time_effect()
-
     # Tiempo en el que inicia el efecto.
     start_time = time.time()
 

@@ -62,7 +62,7 @@ class ResultsImage:
         self.image = pygame.transform.scale(self.image, Configurations.get_image_size_results())
         self.rect = self.image.get_rect()
         screen_size = Configurations.get_screen_size()
-        self.rect.centerx = screen_size[0] // 2 # Ancho.
+        self.rect.centerx = screen_size[0] // 2  # Ancho.
         self.rect.y = 50  # 50px desde arriba
 
 

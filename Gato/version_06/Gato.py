@@ -46,13 +46,14 @@ def run_game() -> None:
     game_over = False
     while not game_over:
         # Se verifica los eventos (teclado y ratón) del juego.
-        #game_over = game_events(marks_group, turn_image)
-        game_over, result = game_events(marks_group, turn_image)
+
+        game_over = game_events(marks_group, turn_image)
+
         # Se dibujan los elementos gráficos en la pantalla
         screen_refresh(screen, clock, background, marks_group, turn_image)
 
         # Se verifica los resultados del juego.
-
+        game_over, result = check_winner(marks_group)
 
         # Si el juego terminó, mostrar pantalla de resultados
         if game_over:
