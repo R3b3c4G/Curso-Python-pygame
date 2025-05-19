@@ -31,10 +31,9 @@ class Configurations:
     _size_turn_image = (500, 100)
     _turn_image_position = (140,100)
 
-    _results_image_position = (500,500)
     _image_size_results = (500, 100)
 
-    _image_size_credits = (274, 100)
+    _image_size_credits = (500, 100)
 
     _time_effect = 500
 
@@ -153,12 +152,6 @@ class Configurations:
         """
         return cls._draw_image_path
 
-    @classmethod
-    def get_results_image_position(cls) -> tuple[int, int]:
-        """
-        Getter para _results_image_position
-        """
-        return cls._results_image_position
 
     @classmethod
     def get_credits_image_path(cls) -> str:

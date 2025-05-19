@@ -12,7 +12,6 @@ def game_events(marks_group, turn_image:TurnImage):
     # Se declara la bandera de fin de juego.
     game_over = False
 
-
     # Se verifica los eventos (teclado y ratón) del juego.
     for event in pygame.event.get():
         # Un clic en cerrar el juego.
@@ -44,8 +43,6 @@ def game_events(marks_group, turn_image:TurnImage):
                     new_mark = TicTacToeMark(cell_number)
                     marks_group.add(new_mark)
                     turn_image.change_turn(TicTacToeMark.get_turno())
-
-
 
     # Se regresa la bandera.
     return game_over
