@@ -63,7 +63,7 @@ class ResultsImage:
         self.rect = self.image.get_rect()
         screen_size = Configurations.get_screen_size()
         self.rect.centerx = screen_size[0] // 2  # Ancho.
-        self.rect.y = 250  # 250px desde arriba
+        self.rect.y = Configurations.get_position_up()  # 250px desde arriba
 
 
 class CreditsImage:
@@ -75,11 +75,13 @@ class CreditsImage:
         self.image = pygame.image.load(Configurations.get_credits_image_path())
         self.image = pygame.transform.scale(self.image, Configurations.get_image_size_credits())
         self.rect = self.image.get_rect()
-        screen_size = Configurations.get_screen_size()
-        self.rect.centerx = screen_size[0] // 2 # Ancho.  # La mitad del ancho de pantalla
-        self.rect.bottom = screen_size[1] - 20  #Alto # 20px desde abajo
+        self.screen_size = Configurations.get_screen_size()
+        #self.rect.centerx = screen_size[0] // 2 # Ancho.  # La mitad del ancho de pantalla
+        #self.rect.bottom = self.screen_size[1] - 20  #Alto # 20px desde abajo
 
     def blit(self, screen):
+        self.rect.centerx = screen.get_rect().centerx
+        self.rect.bottom = screen.get_rect().bottom
         screen.blit(self.image, self.rect)
 
 class Audio:

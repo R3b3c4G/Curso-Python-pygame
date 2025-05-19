@@ -46,6 +46,8 @@ class Configurations:
     _music_volume = 0.25
     _music_fadeout_time = 1000
 
+    _position_up = 250
+
     @classmethod
     def get_screen_size(cls) -> tuple[int, int]:
         """
@@ -222,3 +224,7 @@ class Configurations:
     @classmethod
     def get_music_fadeout_time(cls) -> int:
         return cls._music_fadeout_time
+
+    @classmethod
+    def get_position_up(cls) -> int:
+        return cls._position_up
