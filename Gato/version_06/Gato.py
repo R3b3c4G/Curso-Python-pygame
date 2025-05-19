@@ -20,6 +20,8 @@ def run_game() -> None:
 
     Función principal de videojuego del gato.
 
+
+
     """
     # Se inicializa el módulo de pygame.
     pygame.init()

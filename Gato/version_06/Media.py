@@ -69,6 +69,7 @@ class ResultsImage:
 class CreditsImage:
     """
     Clase que muestra los créditos del juego.
+
     """
     def __init__(self):
         self.image = pygame.image.load(Configurations.get_credits_image_path())

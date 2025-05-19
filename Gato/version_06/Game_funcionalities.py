@@ -71,6 +71,7 @@ def screen_refresh(screen:pygame.surface.Surface, clock: pygame.time.Clock, back
 
 def check_winner(marks_group) -> tuple[bool, str]:
     """
+
      Función para verificar si hay un ganador o si se tiene un empate.
 
     """
