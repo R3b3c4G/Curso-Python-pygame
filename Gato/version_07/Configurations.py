@@ -218,6 +218,7 @@ class Configurations:
     def get_music_volume(cls) -> float:
         """
         Getter para _music_volume.
+
         """
         return cls._music_volume
 

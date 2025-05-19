@@ -50,6 +50,7 @@ class TurnImage:
 class ResultsImage:
     """
     Clase que contiene la pantalla del fin del juego.
+
     """
     def __init__(self, result: str):
         if result == "X":
