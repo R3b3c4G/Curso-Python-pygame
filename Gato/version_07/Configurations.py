@@ -35,7 +35,7 @@ class Configurations:
 
     _image_size_credits = (700, 150)
 
-    _time_effect = 500
+    _time_effect = 300
 
     # Rutas de los audios utilizados en la clase audio
     _music_path = "../media/music.mp3"

@@ -45,7 +45,6 @@ def run_game() -> None:
     # Imagen del turno.
     turn_image = TurnImage()
 
-
     # Ciclo principal del juego.
     game_over = False
     while not game_over:
