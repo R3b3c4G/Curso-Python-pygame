@@ -6,7 +6,7 @@ Integrantes: Héctor Jesús Méndez Santiago, Rebeca Gregorio Espina.
 Archivo donde se reproducirá el juego principal del gato.
 Versión 0.6:
 Se implementó la lógica del juego para determinar al ganador.
-Se agregó la pantalla del fin del juego.
+Se agregó la pantalla del fin del juego, incluye la imagen del resultado del juego y los créditos.
 """
 
 # Se importa los módulos del videojuego.
