@@ -144,18 +144,23 @@ def game_over_screen(screen:pygame.surface.Surface, clock: pygame.time.Clock, ba
     audio.music_fadeout(time=Configurations.get_music_fadeout_time())
     audio.play_result_sound()
 
-    while time.time() - start_time < 4:  # Mostrar por 4 segundos
-        pygame.time.get_ticks()
-        screen_refresh(screen, clock, background, marks_group, turn_image)
+    # Duración del afecto.
+    time_effect = Configurations.get_time_effect()
+    # Tiempo en el que inicia el efecto.
+    start_time = time.time()
 
-        if check_winner(marks_group):
-            credits_image.blit(screen)
+    while time.time() - start_time < 4:  # Mostrar por 3 segundos
+        current_time = pygame.time.get_ticks()
+        show_result = (current_time % (time_effect * 2)) < time_effect
 
+        background.blit(screen)
+        marks_group.draw(screen)
+        turn_image.blit(screen)
+        credits_image.blit(screen)
 
         # Dibujar resultado si corresponde
-        if pygame.time.get_ticks():
-            screen.blit(results_image.image, results_image.rect)#
+        if show_result:
+            screen.blit(results_image.image, results_image.rect)
 
         pygame.display.flip()
-        pygame.time.delay(200)
         clock.tick(Configurations.get_fps())
